@@ -2,7 +2,6 @@ package jp.gr.java_conf.star_diopside.clock.controller;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -30,17 +29,15 @@ public class ClockController implements Initializable {
     @FXML
     private Label stopwatch;
 
-    private static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         now.textProperty().bindBidirectional(clock.nowProperty(),
                 new LocalDateTimeStringConverter(DATE_TIME_FORMATTER, null));
         stopwatch.textProperty().bindBidirectional(clock.stopwatchProperty(),
-                new ObjectStringConverter<>(
-                        duration -> String.format("%02d:%02d:%02d.%03d", duration.toHours(), duration.toMinutes() % 60,
-                                duration.getSeconds() % 60, duration.get(ChronoUnit.NANOS) / 1_000_000),
-                        null));
+                new ObjectStringConverter<>(d -> String.format("%02d:%02d:%02d.%03d", d.toHours(), d.toMinutes() % 60,
+                        d.getSeconds() % 60, d.getNano() / 1_000_000), null));
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
             clock.update();

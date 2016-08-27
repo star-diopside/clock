@@ -1,18 +1,22 @@
-package jp.gr.java_conf.star_diopside.clock.application;
+package jp.gr.java_conf.star_diopside.clock;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Jsr330ScopeMetadataResolver;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jp.gr.java_conf.star_diopside.clock.config.AppConfig;
 import jp.gr.java_conf.star_diopside.spark.commons.support.util.CharsetResourceBundleControl;
 
+@SpringBootApplication
+@ComponentScan(scopeResolver = Jsr330ScopeMetadataResolver.class)
 public class App extends Application {
 
     private ConfigurableApplicationContext applicationContext;
@@ -23,7 +27,7 @@ public class App extends Application {
 
     @Override
     public void init() throws Exception {
-        applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        applicationContext = SpringApplication.run(App.class, getParameters().getRaw().toArray(new String[0]));
     }
 
     @Override
