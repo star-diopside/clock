@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import jp.gr.java_conf.star_diopside.spark.commons.core.interceptor.LoggingObjectDetailsInterceptor;
+import jp.gr.java_conf.star_diopside.silver.commons.core.interceptor.LoggingObjectDetailsInterceptor;
 
 @Configuration
 @EnableAspectJAutoProxy

@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "org.springframework.boot"
+
+group = "jp.gr.java_conf.star_diopside.clock"
+version = "1.0.0-SNAPSHOT"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.spring.platform:platform-bom:Brussels-SR5"
+    }
+}
+
+dependencies {
+    compile "jp.gr.java_conf.star_diopside.silver.commons:silver-commons-core:1.0.0-SNAPSHOT"
+    compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "javax.inject:javax.inject"
+}
