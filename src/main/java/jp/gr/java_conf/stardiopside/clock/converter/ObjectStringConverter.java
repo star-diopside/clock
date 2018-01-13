@@ -1,4 +1,4 @@
-package jp.gr.java_conf.star_diopside.clock.converter;
+package jp.gr.java_conf.stardiopside.clock.converter;
 
 import java.util.function.Function;
 

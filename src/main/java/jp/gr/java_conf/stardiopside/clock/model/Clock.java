@@ -1,4 +1,4 @@
-package jp.gr.java_conf.star_diopside.clock.model;
+package jp.gr.java_conf.stardiopside.clock.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

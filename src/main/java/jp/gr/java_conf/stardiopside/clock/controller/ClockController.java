@@ -1,4 +1,4 @@
-package jp.gr.java_conf.star_diopside.clock.controller;
+package jp.gr.java_conf.stardiopside.clock.controller;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.util.converter.LocalDateTimeStringConverter;
-import jp.gr.java_conf.star_diopside.clock.converter.ObjectStringConverter;
-import jp.gr.java_conf.star_diopside.clock.model.Clock;
+import jp.gr.java_conf.stardiopside.clock.converter.ObjectStringConverter;
+import jp.gr.java_conf.stardiopside.clock.model.Clock;
 
 @Named
 public class ClockController implements Initializable {

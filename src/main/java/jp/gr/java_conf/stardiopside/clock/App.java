@@ -1,4 +1,4 @@
-package jp.gr.java_conf.star_diopside.clock;
+package jp.gr.java_conf.stardiopside.clock;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jp.gr.java_conf.star_diopside.silver.commons.support.util.CharsetResourceBundleControl;
+import jp.gr.java_conf.stardiopside.silver.commons.support.util.CharsetResourceBundleControl;
 
 @SpringBootApplication
 @ComponentScan(scopeResolver = Jsr330ScopeMetadataResolver.class)
