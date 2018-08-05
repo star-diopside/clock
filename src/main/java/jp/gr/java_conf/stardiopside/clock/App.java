@@ -1,8 +1,10 @@
 package jp.gr.java_conf.stardiopside.clock;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
+import org.controlsfx.dialog.ExceptionDialog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,12 +15,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jp.gr.java_conf.stardiopside.silver.commons.support.util.CharsetResourceBundleControl;
 
 @SpringBootApplication
 @ComponentScan(scopeResolver = Jsr330ScopeMetadataResolver.class)
 public class App extends Application {
 
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     private ConfigurableApplicationContext applicationContext;
 
     public static void main(String[] args) {
@@ -32,11 +34,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(applicationContext.getResource("classpath:/fxml/clock.fxml").getURL(),
-                ResourceBundle.getBundle("i18n", new CharsetResourceBundleControl(StandardCharsets.UTF_8)));
+        var messages = ResourceBundle.getBundle("messages");
+
+        Thread.currentThread().setUncaughtExceptionHandler((t, e) -> {
+            logger.error(e.getMessage(), e);
+            var dialog = new ExceptionDialog(e);
+            dialog.setHeaderText(messages.getString("message.uncaughtException"));
+            dialog.show();
+        });
+
+        var loader = new FXMLLoader(applicationContext.getResource("classpath:/fxml/clock.fxml").getURL(), messages);
         loader.setControllerFactory(applicationContext::getBean);
-        Scene scene = new Scene(loader.load());
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(loader.load()));
         primaryStage.show();
     }
 

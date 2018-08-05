@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import jp.gr.java_conf.stardiopside.silver.commons.core.interceptor.LoggingObjectDetailsInterceptor;
+import jp.gr.java_conf.stardiopside.silver.commons.support.interceptor.LoggingObjectDetailsInterceptor;
 
 @Configuration
 @EnableAspectJAutoProxy
@@ -21,7 +21,7 @@ public class AppConfig {
 
     @Bean
     public Advisor loggingAdvisor() {
-        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        var pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("execution(* jp.gr.java_conf.stardiopside.clock..*(..))"
                 + " && !execution(* jp.gr.java_conf.stardiopside.clock.model.Clock.update())"
                 + " && !execution(* jp.gr.java_conf.stardiopside.clock.controller..*(..))");

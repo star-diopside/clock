@@ -5,28 +5,22 @@ import java.time.LocalDateTime;
 
 import javax.inject.Named;
 
-import javafx.beans.binding.ObjectBinding;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 @Named
 public class Clock {
 
-    private ObjectProperty<LocalDateTime> start = new SimpleObjectProperty<>(LocalDateTime.now());
-    private ObjectProperty<LocalDateTime> now = new SimpleObjectProperty<>(LocalDateTime.now());
+    private ObjectProperty<LocalDateTime> start;
+    private ObjectProperty<LocalDateTime> now;
     private ObjectProperty<Duration> stopwatch = new SimpleObjectProperty<>();
 
     public Clock() {
-        stopwatch.bind(new ObjectBinding<Duration>() {
-            {
-                bind(start, now);
-            }
-
-            @Override
-            protected Duration computeValue() {
-                return Duration.between(start.get(), now.get());
-            }
-        });
+        var current = LocalDateTime.now();
+        start = new SimpleObjectProperty<>(current);
+        now = new SimpleObjectProperty<>(current);
+        stopwatch.bind(Bindings.createObjectBinding(() -> Duration.between(start.get(), now.get()), start, now));
     }
 
     public ObjectProperty<LocalDateTime> nowProperty() {
