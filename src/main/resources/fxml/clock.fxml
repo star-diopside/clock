@@ -7,26 +7,27 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jp.gr.java_conf.stardiopside.clock.controller.ClockController">
-   <center>
-      <GridPane hgap="8.0" vgap="8.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
-          <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="%label.currentDateTime" />
-            <Label fx:id="now" GridPane.columnIndex="1" />
-            <Label text="%label.elapsedTime" GridPane.rowIndex="1" />
-            <Label fx:id="stopwatch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-         <padding>
-            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-         </padding>
-      </GridPane>
-   </center>
+<BorderPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/10.0.2"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="jp.gr.java_conf.stardiopside.clock.controller.ClockController">
+    <center>
+        <GridPane hgap="8.0" vgap="8.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="%label.currentDateTime" />
+                <Label fx:id="now" GridPane.columnIndex="1" />
+                <Label text="%label.elapsedTime" GridPane.rowIndex="1" />
+                <Label fx:id="stopwatch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </children>
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+            </padding>
+        </GridPane>
+    </center>
 </BorderPane>

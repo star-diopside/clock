@@ -6,12 +6,10 @@ import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import jp.gr.java_conf.stardiopside.silver.commons.support.interceptor.LoggingObjectDetailsInterceptor;
 
 @Configuration
-@EnableAspectJAutoProxy
 public class AppConfig {
 
     @Bean

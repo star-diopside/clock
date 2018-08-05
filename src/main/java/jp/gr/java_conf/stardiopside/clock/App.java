@@ -6,9 +6,13 @@ import org.controlsfx.dialog.ExceptionDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Jsr330ScopeMetadataResolver;
 
 import javafx.application.Application;
@@ -17,7 +21,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 @SpringBootApplication
-@ComponentScan(scopeResolver = Jsr330ScopeMetadataResolver.class)
+@ComponentScan(scopeResolver = Jsr330ScopeMetadataResolver.class, excludeFilters = {
+        @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+        @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
 public class App extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(App.class);

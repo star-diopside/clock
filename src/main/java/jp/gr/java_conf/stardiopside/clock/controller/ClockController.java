@@ -39,7 +39,7 @@ public class ClockController implements Initializable {
         stopwatch.textProperty().bind(
                 Bindings.createStringBinding(() -> convertDurationString(stopwatchProperty.get()), stopwatchProperty));
 
-        var timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+        var timeline = new Timeline(new KeyFrame(Duration.millis(20), event -> {
             clock.update();
             now.getScene().getWindow().sizeToScene();
         }));
